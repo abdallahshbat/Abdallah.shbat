@@ -1,32 +1,22 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
-    <!-- ========================================== -->
-    <!-- 1. إعدادات الصفحة الأساسية (Meta Tags)     -->
-    <!-- ========================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- تعديل عنوان الموقع الذي يظهر في المتصفح -->
     <title>عبدالله بن محمد شباط | خبير التسويق الرقمي</title>
     
-    <!-- تعديل وصف الموقع لمحركات البحث (SEO) -->
+    <!-- SEO Meta Tags -->
     <meta name="description" content="عبدالله شباط - مسوق ومستشار تسويق رقمي، أساعد المتاجر والعلامات التجارية على تحسين نتائجها عبر الحملات الإعلانية والتحليل التسويقي.">
-
-    <!-- ========================================== -->
-    <!-- 2. الخطوط والأيقونات الخارجية              -->
-    <!-- ========================================== -->
-    <!-- خطوط جوجل: IBM Plex Sans Arabic -->
+    
+    <!-- Google Fonts: IBM Plex Sans Arabic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- مكتبة الأيقونات Phosphor Icons -->
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- ========================================== -->
-    <!-- 3. إعدادات الألوان والتصميم (Tailwind CSS) -->
-    <!-- ========================================== -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -36,7 +26,6 @@
                         sans: ['"IBM Plex Sans Arabic"', 'sans-serif'],
                     },
                     colors: {
-                        // يمكنك تغيير ألوان الموقع الأساسية من هنا
                         brand: {
                             purple: '#6B21A8',
                             purpleDark: '#3B0764',
@@ -66,16 +55,13 @@
         }
     </script>
 
-    <!-- ========================================== -->
-    <!-- 4. التنسيقات الإضافية (Custom CSS)         -->
-    <!-- ========================================== -->
     <style>
         body {
             -webkit-font-smoothing: antialiased;
             background-color: #FFFFFF;
         }
 
-        /* حركات الظهور المتدرج عند النزول بالصفحة */
+        /* حركات الظهور المتدرج */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -86,11 +72,11 @@
             transform: translateY(0);
         }
 
-        /* إخفاء شريط التمرير للسلايدرات */
+        /* إخفاء شريط التمرير */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* حركة ارتفاع المربعات عند التمرير عليها */
+        /* حركة المربعات */
         .hover-lift {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -99,7 +85,7 @@
             box-shadow: 0 15px 35px -5px rgba(107, 33, 168, 0.15);
         }
 
-        /* العلامة المائية في قسم الخدمات */
+        /* العلامة المائية للخدمات */
         .watermark-icon {
             position: absolute;
             bottom: -10px;
@@ -132,9 +118,13 @@
             background: linear-gradient(to bottom, transparent, #F3E8FF 90%);
         }
 
-        /* تصغير حجم النص في الجوال */
-        .text-clamp-name { font-size: clamp(1.8rem, 6vw, 4.5rem); }
-        .text-clamp-title { font-size: clamp(1rem, 3.5vw, 3rem); }
+        /* تصغير حجم النص في الجوال لضمان السطر الواحد مع الحفاظ على وضوحه */
+        .text-clamp-name {
+            font-size: clamp(1.8rem, 6vw, 4.5rem);
+        }
+        .text-clamp-title {
+            font-size: clamp(1rem, 3.5vw, 3rem);
+        }
 
         /* تحسينات سحب شركاء النجاح */
         .cursor-grab { cursor: grab; }
@@ -149,7 +139,7 @@
 <body class="text-brand-slate overflow-x-hidden relative">
 
     <!-- ========================================== -->
-    <!-- القسم الأول: الشريط العلوي والقائمة (Header)-->
+    <!-- === قائمة التنقل (Header & Mobile Menu) === -->
     <!-- ========================================== -->
     <nav class="fixed top-0 w-full z-50 backdrop-blur-xl bg-white/90 border-b border-brand-purple/10 shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -159,7 +149,7 @@
                     <i class="ph ph-list text-2xl md:text-3xl"></i>
                 </button>
 
-                <!-- الاسم في الشريط العلوي -->
+                <!-- الاسم الاحترافي (سطر واحد دائماً) -->
                 <a href="#" class="flex items-center group">
                     <div class="flex flex-col text-left">
                         <span class="font-bold text-lg md:text-xl text-brand-purpleDark tracking-wide whitespace-nowrap text-clamp-title">عبدالله بن محمد شباط</span>
@@ -170,7 +160,7 @@
         </div>
     </nav>
 
-    <!-- القائمة الجانبية المنسدلة (لإضافة أو تعديل الروابط) -->
+    <!-- القائمة الجانبية المنسدلة (حسب الترتيب المطلوب) -->
     <div id="mobile-menu" class="fixed inset-y-0 right-0 w-72 bg-brand-purpleDark text-white z-[60] transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
         <div class="p-5 flex justify-between items-center border-b border-white/10">
             <span class="font-bold text-xl text-brand-gold">القائمة</span>
@@ -179,53 +169,78 @@
             </button>
         </div>
         <div class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
-            <a href="#about" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium"><i class="ph ph-user text-brand-gold text-lg"></i> عني</a>
-            <a href="#metrics" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium"><i class="ph ph-chart-line-up text-brand-gold text-lg"></i> سجل الانجازات</a>
-            <a href="#clients" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium"><i class="ph ph-handshake text-brand-gold text-lg"></i> شركاء النجاح</a>
-            <a href="#ai-tool" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium"><i class="ph ph-magic-wand text-brand-gold text-lg"></i> تشخيص تسويقي</a>
-            <a href="#services" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium"><i class="ph ph-briefcase text-brand-gold text-lg"></i> أبرز الخدمات</a>
-            <a href="#ai-problem" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium"><i class="ph ph-lightbulb text-brand-gold text-lg"></i> حل المشكلات</a>
-            <a href="#testimonials" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium"><i class="ph ph-quotes text-brand-gold text-lg"></i> قالوا عني</a>
-            <a href="#contact" class="menu-link px-4 py-3 rounded-xl hover:bg-brand-orange bg-brand-purple transition-colors flex items-center gap-3 font-medium mt-2 shadow-lg"><i class="ph ph-phone text-white text-lg"></i> تواصل معي</a>
+            <a href="#about" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium">
+                <i class="ph ph-user text-brand-gold text-lg"></i> عني
+            </a>
+            <a href="#metrics" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium">
+                <i class="ph ph-chart-line-up text-brand-gold text-lg"></i> سجل الانجازات
+            </a>
+            <a href="#clients" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium">
+                <i class="ph ph-handshake text-brand-gold text-lg"></i> شركاء النجاح
+            </a>
+            <a href="#ai-tool" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium">
+                <i class="ph ph-magic-wand text-brand-gold text-lg"></i> تشخيص تسويقي
+            </a>
+            <a href="#services" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium">
+                <i class="ph ph-briefcase text-brand-gold text-lg"></i> أبرز الخدمات
+            </a>
+            <a href="#ai-problem" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium">
+                <i class="ph ph-lightbulb text-brand-gold text-lg"></i> حل المشكلات
+            </a>
+            <a href="#testimonials" class="menu-link px-4 py-3 rounded-xl hover:bg-white/10 transition-colors flex items-center gap-3 font-medium">
+                <i class="ph ph-quotes text-brand-gold text-lg"></i> قالوا عني
+            </a>
+            <a href="#contact" class="menu-link px-4 py-3 rounded-xl hover:bg-brand-orange bg-brand-purple transition-colors flex items-center gap-3 font-medium mt-2 shadow-lg">
+                <i class="ph ph-phone text-white text-lg"></i> تواصل معي
+            </a>
+            
+            <div class="mt-auto pt-4 border-t border-white/10">
+                <a href="#" class="menu-link px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center gap-3 font-medium text-gray-300">
+                    <i class="ph ph-sign-in text-lg"></i> تسجيل الدخول
+                </a>
+            </div>
         </div>
     </div>
     <div id="menu-overlay" class="fixed inset-0 bg-black/60 z-[55] hidden backdrop-blur-sm transition-opacity"></div>
 
 
     <!-- ========================================== -->
-    <!-- القسم الثاني: الواجهة الرئيسية (Hero Section)-->
+    <!-- === القسم الافتتاحي (Hero Section - Redesigned) === -->
     <!-- ========================================== -->
+    <!-- تصميم احترافي، بدون أشخاص، يعكس التسويق والنمو -->
     <section id="about" class="relative min-h-[100vh] flex items-center pt-16 bg-brand-purpleDark overflow-hidden">
         
-        <!-- تعديل صورة الخلفية من هنا -->
+        <!-- صورة الخلفية الاحترافية (مجردة تدل على البيانات والنمو) -->
         <div class="absolute inset-0 z-0 bg-brand-purpleDark">
+            <!-- رفع شفافية الصورة وإزالة تأثير الدمج المعتم لتظهر بكل وضوح -->
             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=80" alt="استراتيجية وتسويق رقمي" class="w-full h-full object-cover opacity-40 md:opacity-60">
+            <!-- تدرج لوني يحافظ على وضوح الصورة (في اليسار) ووضوح النصوص (في اليمين) -->
             <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-brand-purpleDark via-brand-purpleDark/80 to-brand-purpleDark/20"></div>
         </div>
 
+        <!-- المحتوى المركزي -->
         <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center md:justify-start">
             <div class="w-full max-w-3xl text-center md:text-right reveal mt-4 md:mt-0">
                 
-                <!-- تعديل الرقم المميز -->
-                <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-brand-orange to-amber-500 text-white font-bold text-sm md:text-lg mb-8 shadow-glow animate-pulse-glow border border-amber-300/50 w-full justify-center md:w-auto">
+                <!-- رقم مميز (مبهر وبارز) -->
+                <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-brand-orange to-amber-500 text-white font-bold text-sm md:text-lg mb-8 shadow-glow border border-amber-300/50 w-full justify-center md:w-auto">
                     <i class="ph ph-rocket-launch text-2xl"></i>
-                    <span>إدارة ميزانيات إعلانية تتجاوز 15 مليون ريال</span>
+                    <span>إدارة حملات إعلانية وصلت لأكثر من <strong class="text-2xl md:text-3xl font-black text-brand-purpleDark px-1 animate-pulse drop-shadow-md">10</strong> مليون شخص</span>
                 </div>
 
                 <h2 class="text-xl md:text-3xl text-brand-gold mb-2 font-medium">مرحباً، أنا</h2>
                 
-                <!-- تعديل الاسم -->
+                <!-- الاسم في سطر واحد -->
                 <h1 class="font-bold mb-6 text-white tracking-tight text-clamp-name whitespace-nowrap drop-shadow-lg">
                     عبدالله بن محمد شباط
                 </h1>
                 
-                <!-- تعديل النبذة الشخصية -->
                 <p class="text-base md:text-xl text-gray-200 leading-relaxed font-light mb-8 max-w-2xl mx-auto md:mx-0">
-                    خبرة وتخصص لأكثر من <strong class="text-brand-orange font-bold text-lg md:text-2xl">7 سنوات</strong> في التسويق الإلكتروني. <br>
-                    دبلوم في التسويق وأخصائي إدارة مشاريع تنموية PMD.
+                    خبرة وتخصص لأكثر من <strong class="text-brand-orange font-bold text-lg md:text-2xl">5 سنوات</strong> في التسويق الإلكتروني.<br>
+                    التسويق للمتاجر الإلكترونية، المحلات التجارية، والمطاعم.<br>
+                    حاصل على دبلوم في التسويق المتكامل (معتمد من CPD UK).
                 </p>
 
-                <!-- تعديل أرقام التواصل (رقم الجوال والإيميل) -->
                 <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 md:gap-6 mb-10">
                     <a href="tel:00966553940572" class="flex items-center gap-3 text-white hover:text-brand-gold transition-colors text-base md:text-lg font-medium bg-white/10 backdrop-blur-sm border border-white/10 px-6 py-3 rounded-xl w-full sm:w-auto justify-center shadow-lg">
                         <i class="ph ph-phone text-2xl text-brand-orange"></i>
@@ -237,22 +252,16 @@
                     </a>
                 </div>
 
-                <!-- روابط السوشال ميديا (ضع روابط حساباتك بدلاً من #) -->
+                <!-- أيقونات السوشال ميديا -->
                 <div class="flex items-center justify-center md:justify-start gap-4">
-                    <a href="#" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-brand-purple transition-all border border-white/5 shadow-md hover:-translate-y-1">
+                    <a href="https://www.tiktok.com/@abdallah.shbat?_r=1&_t=ZS-95mhGTNhlp6" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-brand-purple transition-all border border-white/5 shadow-md hover:-translate-y-1">
                         <i class="ph ph-tiktok-logo text-2xl md:text-3xl"></i>
                     </a>
-                    <a href="#" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-brand-purple transition-all border border-white/5 shadow-md hover:-translate-y-1">
+                    <a href="https://www.linkedin.com/in/%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%84%D9%87-%D8%A8%D9%86-%D9%85%D8%AD%D9%85%D8%AF-%D8%B4%D8%A8%D8%A7%D8%B7-88101339b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-brand-purple transition-all border border-white/5 shadow-md hover:-translate-y-1">
                         <i class="ph ph-linkedin-logo text-2xl md:text-3xl"></i>
                     </a>
-                    <a href="#" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-yellow-400 hover:text-white transition-all border border-white/5 shadow-md hover:-translate-y-1">
+                    <a href="https://snapchat.com/t/0yl8qSAe" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-yellow-400 hover:text-white transition-all border border-white/5 shadow-md hover:-translate-y-1">
                         <i class="ph ph-snapchat-logo text-2xl md:text-3xl"></i>
-                    </a>
-                    <a href="#" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-pink-600 hover:text-white transition-all border border-white/5 shadow-md hover:-translate-y-1">
-                        <i class="ph ph-instagram-logo text-2xl md:text-3xl"></i>
-                    </a>
-                    <a href="#" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-red-600 hover:text-white transition-all border border-white/5 shadow-md hover:-translate-y-1">
-                        <i class="ph ph-youtube-logo text-2xl md:text-3xl"></i>
                     </a>
                 </div>
             </div>
@@ -261,126 +270,82 @@
 
 
     <!-- ========================================== -->
-    <!-- القسم الثالث: الأرقام والإنجازات (Metrics) -->
+    <!-- === قسم الأرقام (سجل الانجازات) === -->
     <!-- ========================================== -->
-    <!-- لتعديل الأرقام، قم بتغيير القيمة الموجودة داخل (data-target="القيمة") -->
     <section id="metrics" class="py-16 md:py-24 bg-brand-light relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10 md:mb-16 reveal">
                 <h2 class="text-2xl md:text-4xl font-bold text-brand-purple mb-3">لغة الأرقام لا تكذب</h2>
                 <div class="w-16 md:w-24 h-1 md:h-1.5 bg-brand-orange mx-auto rounded-full mb-3"></div>
-                <p class="text-brand-slate text-sm md:text-lg max-w-2xl mx-auto">سجل حافل من الإنجازات المبنية على إدارتي المباشرة للميزانيات.</p>
+                <p class="text-brand-slate text-sm md:text-lg max-w-2xl mx-auto">سجل حافل يجمع بين مبيعات المتاجر الإلكترونية، والانتشار الواسع للمشاريع المحلية.</p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
-                <!-- بطاقة 1 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-brand-purple hover-lift reveal">
-                    <i class="ph ph-storefront text-2xl md:text-3xl text-brand-purple mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
+            <!-- الجريد: 6 بطاقات بارزة موزعة بشكل أنيق -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                
+                <!-- بطاقة 1: 4300 إعلان -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-card border border-gray-100 hover-lift reveal relative overflow-hidden">
+                    <i class="ph ph-megaphone text-3xl md:text-4xl text-brand-purple mb-4 block"></i>
+                    <div class="text-3xl md:text-5xl font-bold text-brand-slate mb-2 flex items-center font-sans">
+                        <span class="text-brand-orange ml-1 text-2xl md:text-3xl">+</span>
+                        <span class="counter-value" data-target="4300" data-step="100" data-speed="70">0</span>
                     </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">عدد البراندات (العملاء) التي عملت معها</h3>
+                    <h3 class="font-semibold text-gray-500 text-sm md:text-base leading-relaxed">إطلاق إعلان لمتاجر إلكترونية ومشاريع محلية</h3>
                 </div>
 
-                <!-- بطاقة 2 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-brand-orange hover-lift reveal" style="transition-delay: 50ms;">
-                    <i class="ph ph-wallet text-2xl md:text-3xl text-brand-orange mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
+                <!-- بطاقة 2: 5 مليون (مبيعات) مميزة -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-card border border-gray-100 hover-lift reveal relative overflow-hidden" style="transition-delay: 50ms;">
+                    <i class="ph ph-currency-circle-dollar text-3xl md:text-4xl text-brand-gold mb-4 block"></i>
+                    <div class="text-3xl md:text-5xl font-bold text-brand-slate mb-2 flex items-center font-sans gap-2">
+                        <span class="text-brand-orange text-2xl md:text-3xl">+</span>
+                        <span class="counter-value text-5xl md:text-6xl text-brand-gold drop-shadow-md scale-110 inline-block transform animate-pulse" data-target="5" data-step="1" data-speed="400">0</span>
+                        <span class="text-xl md:text-2xl text-brand-slate mt-1">مليون ريال</span>
                     </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">إجمالي الإنفاق الإعلاني</h3>
+                    <h3 class="font-semibold text-gray-500 text-sm md:text-base leading-relaxed">مبيعات مباشرة (للمتاجر الإلكترونية)</h3>
                 </div>
 
-                <!-- بطاقة 3 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-brand-gold hover-lift reveal" style="transition-delay: 100ms;">
-                    <i class="ph ph-megaphone text-2xl md:text-3xl text-brand-gold mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
+                <!-- بطاقة 3: 86 مليون ظهور مميزة -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-card border border-gray-100 hover-lift reveal relative overflow-hidden" style="transition-delay: 100ms;">
+                    <i class="ph ph-eye text-3xl md:text-4xl text-brand-orange mb-4 block"></i>
+                    <div class="text-3xl md:text-5xl font-bold text-brand-slate mb-2 flex items-center font-sans gap-2">
+                        <span class="text-brand-orange text-2xl md:text-3xl">+</span>
+                        <span class="counter-value text-5xl md:text-6xl text-brand-slate drop-shadow-md scale-110 inline-block transform relative" data-target="86" data-step="10" data-speed="150">0</span>
+                        <span class="text-xl md:text-2xl text-brand-slate mt-1">مليون</span>
                     </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">عدد الحملات الإعلانية التي أطلقتها</h3>
+                    <h3 class="font-semibold text-gray-500 text-sm md:text-base leading-relaxed">مرات الظهور الكلية للإعلانات</h3>
                 </div>
 
-                <!-- بطاقة 4 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-blue-500 hover-lift reveal" style="transition-delay: 150ms;">
-                    <i class="ph ph-eye text-2xl md:text-3xl text-blue-500 mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
+                <!-- بطاقة 4: 25000 طلب -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-card border border-gray-100 hover-lift reveal relative overflow-hidden">
+                    <i class="ph ph-shopping-cart text-3xl md:text-4xl text-brand-purpleDark mb-4 block"></i>
+                    <div class="text-3xl md:text-5xl font-bold text-brand-slate mb-2 flex items-center font-sans gap-1">
+                        <span class="text-brand-orange text-2xl md:text-3xl">+</span>
+                        <span class="counter-value" data-target="25000" data-step="1000" data-speed="80">0</span>
+                        <span class="text-xl md:text-2xl text-brand-slate mt-1">ألف</span> <!-- إضافة كلمة ألف كما في التصميم -->
                     </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">إجمالي عدد مرات الظهور</h3>
+                    <h3 class="font-semibold text-gray-500 text-sm md:text-base leading-relaxed">طلب شرائي مؤكد (للمتاجر الإلكترونية)</h3>
                 </div>
 
-                <!-- بطاقة 5 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-brand-purple hover-lift reveal">
-                    <i class="ph ph-cursor-click text-2xl md:text-3xl text-brand-purple mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
+                <!-- بطاقة 5: 11 مليون وصول -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-card border border-gray-100 hover-lift reveal relative overflow-hidden" style="transition-delay: 50ms;">
+                    <i class="ph ph-users text-3xl md:text-4xl text-blue-500 mb-4 block"></i>
+                    <div class="text-3xl md:text-5xl font-bold text-brand-slate mb-2 flex items-center font-sans gap-2">
+                        <span class="text-brand-orange text-2xl md:text-3xl">+</span>
+                        <span class="counter-value" data-target="11" data-step="1" data-speed="150">0</span>
+                        <span class="text-xl md:text-2xl text-brand-slate mt-1">مليون شخص</span>
                     </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">إجمالي عدد النقرات</h3>
+                    <h3 class="font-semibold text-gray-500 text-sm md:text-base leading-relaxed">عدد مرات وصول (وصول فريد)</h3>
                 </div>
 
-                <!-- بطاقة 6 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-brand-orange hover-lift reveal" style="transition-delay: 50ms;">
-                    <i class="ph ph-shopping-cart text-2xl md:text-3xl text-brand-orange mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
+                <!-- بطاقة 6: 1 مليون نقرة -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-card border border-gray-100 hover-lift reveal relative overflow-hidden" style="transition-delay: 100ms;">
+                    <i class="ph ph-cursor-click text-3xl md:text-4xl text-brand-orange mb-4 block"></i>
+                    <div class="text-3xl md:text-5xl font-bold text-brand-slate mb-2 flex items-center font-sans gap-2">
+                        <span class="text-brand-orange text-2xl md:text-3xl">+</span>
+                        <span class="counter-value" data-target="1" data-step="1" data-speed="500">0</span>
+                        <span class="text-xl md:text-2xl text-brand-slate mt-1">مليون نقرة</span>
                     </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">إجمالي عدد الطلبات</h3>
-                </div>
-
-                <!-- بطاقة 7 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-brand-gold hover-lift reveal" style="transition-delay: 100ms;">
-                    <i class="ph ph-currency-circle-dollar text-2xl md:text-3xl text-brand-gold mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
-                    </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">إجمالي قيمة المشتريات</h3>
-                </div>
-
-                <!-- بطاقة 8 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-blue-500 hover-lift reveal" style="transition-delay: 150ms;">
-                    <i class="ph ph-user-plus text-2xl md:text-3xl text-blue-500 mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
-                    </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">إجمالي عدد الإضافات</h3>
-                </div>
-
-                <!-- بطاقة 9 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-brand-purple hover-lift reveal">
-                    <i class="ph ph-chat-centered-text text-2xl md:text-3xl text-brand-purple mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
-                    </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">إجمالي عدد التعليقات</h3>
-                </div>
-
-                <!-- بطاقة 10 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-brand-orange hover-lift reveal" style="transition-delay: 50ms;">
-                    <i class="ph ph-share-network text-2xl md:text-3xl text-brand-orange mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
-                    </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">إجمالي عدد المشاركات</h3>
-                </div>
-
-                <!-- بطاقة 11 -->
-                <div class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-card border border-gray-100 border-b-4 border-brand-gold hover-lift reveal" style="transition-delay: 100ms;">
-                    <i class="ph ph-thumbs-up text-2xl md:text-3xl text-brand-gold mb-2 block"></i>
-                    <div class="text-2xl md:text-4xl font-bold text-brand-slate mb-1 flex items-center font-sans">
-                        <span class="text-brand-orange ml-1 text-lg md:text-2xl">+</span>
-                        <span class="counter-value" data-target="500">0</span>
-                    </div>
-                    <h3 class="font-semibold text-gray-500 text-[11px] md:text-sm">إجمالي عدد الإعجابات</h3>
+                    <h3 class="font-semibold text-gray-500 text-sm md:text-base leading-relaxed">نقرة وزيارة للمتاجر وحسابات المشاريع</h3>
                 </div>
 
             </div>
@@ -389,10 +354,8 @@
 
 
     <!-- ========================================== -->
-    <!-- القسم الرابع: شركاء النجاح (Clients)       -->
+    <!-- === قسم شركاء النجاح (Interactive Drag & Auto) === -->
     <!-- ========================================== -->
-    <!-- ملاحظة: الصور يتم جلبها برمجياً من مجلد اسمه image بأسماء 1.png وحتى 27.png 
-         يمكنك تعديل ذلك من قسم الجافاسكريبت بالأسفل (رقم 4) -->
     <section id="clients" class="py-16 md:py-24 bg-brand-purpleLight overflow-hidden border-y border-brand-purple/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-12 text-center reveal">
             <h2 class="text-2xl md:text-4xl font-bold text-brand-purple mb-3">شركاء النجاح والثقة</h2>
@@ -407,7 +370,7 @@
             
             <div class="overflow-x-auto hide-scrollbar cursor-grab" id="slider-1">
                 <div class="draggable-wrapper gap-3 md:gap-6 px-2 py-2" id="brands-content-1">
-                    <!-- سيتم توليد الصور 1-9 هنا برمجياً -->
+                    <!-- سيتم توليد الصور 1-9 هنا -->
                 </div>
             </div>
         </div>
@@ -419,7 +382,7 @@
             
             <div class="overflow-x-auto hide-scrollbar cursor-grab" id="slider-2">
                 <div class="draggable-wrapper gap-3 md:gap-6 px-2 py-2" id="brands-content-2">
-                    <!-- سيتم توليد الصور 10-18 هنا برمجياً -->
+                    <!-- سيتم توليد الصور 10-18 هنا -->
                 </div>
             </div>
         </div>
@@ -431,17 +394,15 @@
             
             <div class="overflow-x-auto hide-scrollbar cursor-grab" id="slider-3">
                 <div class="draggable-wrapper gap-3 md:gap-6 px-2 py-2" id="brands-content-3">
-                    <!-- سيتم توليد الصور 19-28 هنا برمجياً -->
+                    <!-- سيتم توليد الصور 19-28 هنا -->
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ========================================== -->
-    <!-- القسم الخامس: التشخيص التسويقي بالذكاء الاصطناعي -->
+    <!-- === قسم التشخيص التسويقي السريع (AI Tool) === -->
     <!-- ========================================== -->
-    <!-- يمكنك تعديل نصوص الأزرار والتعليمات من هنا. 
-         (تعديل أوامر الذكاء الاصطناعي - البرومبت - يتم من قسم الجافاسكريبت رقم 5) -->
     <section id="ai-tool" class="py-16 md:py-24 bg-[#1e1b4b] relative overflow-hidden border-b border-brand-purple/20">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
             <div class="bg-brand-purple/20 border border-brand-purple/30 rounded-3xl md:rounded-[3rem] p-6 md:p-14 shadow-premium relative overflow-hidden backdrop-blur-xl hover-lift">
@@ -485,7 +446,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- القسم السادس: أبرز الخدمات (Services)      -->
+    <!-- === قسم أبرز الخدمات (Services) === -->
     <!-- ========================================== -->
     <section id="services" class="py-16 md:py-24 bg-white border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -495,6 +456,7 @@
                 <p class="text-brand-slate text-sm md:text-lg max-w-2xl mx-auto">خبرتي أضعها بين يديك عبر خدمات مدروسة باحترافية.</p>
             </div>
 
+            <!-- حاوية الخدمات: سلايدر في الجوال وشبكة في الحاسب -->
             <div id="services-slider" class="flex overflow-x-auto md:grid md:grid-cols-3 gap-4 md:gap-8 pb-4 md:pb-0 snap-x snap-mandatory hide-scrollbar px-2 md:px-0 scroll-smooth">
                 
                 <!-- الخدمة 1 -->
@@ -557,7 +519,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- القسم السابع: أداة حل المشكلات بالذكاء الاصطناعي-->
+    <!-- === قسم حل المشكلات (Lead Magnet) === -->
     <!-- ========================================== -->
     <section id="ai-problem" class="py-16 md:py-24 bg-brand-purpleLight relative overflow-hidden border-t border-white/50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
@@ -576,6 +538,7 @@
                     </button>
                 </div>
 
+                <!-- مساحة العرض والتشويق -->
                 <div id="ai-problem-result" class="hidden text-right mt-8 pt-6 border-t border-gray-100 bg-brand-purpleLight/40 rounded-2xl p-5 md:p-8 relative">
                     <div id="ai-problem-loading" class="hidden flex flex-col items-center justify-center py-4">
                         <div class="w-8 h-8 border-4 border-brand-purple border-t-transparent rounded-full animate-spin mb-3"></div>
@@ -583,6 +546,7 @@
                     </div>
                     
                     <div id="ai-problem-output-container" class="hidden">
+                        <!-- الكلاس text-fade-out لعمل تأثير التلاشي للنص -->
                         <div id="ai-problem-text" class="text-brand-slate leading-relaxed text-sm md:text-base font-medium text-fade-out">
                             <!-- سيتم وضع الحل المبدئي هنا -->
                         </div>
@@ -600,7 +564,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- القسم الثامن: التوصيات والآراء (Testimonials)-->
+    <!-- === قسم قالوا عني (Testimonials) === -->
     <!-- ========================================== -->
     <section id="testimonials" class="py-16 md:py-24 bg-white border-y border-gray-100 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
@@ -610,7 +574,6 @@
             
             <div id="testimonials-slider" class="flex overflow-x-auto gap-4 md:gap-8 pb-8 snap-x snap-mandatory hide-scrollbar cursor-grab active:cursor-grabbing text-right px-2 md:px-4">
                 
-                <!-- التوصية الأولى -->
                 <div class="w-[85vw] sm:w-[350px] md:w-[400px] bg-brand-purpleLight p-6 md:p-10 rounded-2xl md:rounded-3xl snap-center shrink-0 border border-brand-purple/10 hover-lift">
                     <i class="ph ph-quotes text-4xl md:text-5xl text-brand-orange mb-4 block"></i>
                     <p class="text-sm md:text-lg text-brand-slate font-medium mb-6 leading-relaxed">
@@ -625,7 +588,6 @@
                     </div>
                 </div>
 
-                <!-- التوصية الثانية -->
                 <div class="w-[85vw] sm:w-[350px] md:w-[400px] bg-brand-purpleLight p-6 md:p-10 rounded-2xl md:rounded-3xl snap-center shrink-0 border border-brand-purple/10 hover-lift">
                     <i class="ph ph-quotes text-4xl md:text-5xl text-brand-orange mb-4 block"></i>
                     <p class="text-sm md:text-lg text-brand-slate font-medium mb-6 leading-relaxed">
@@ -645,7 +607,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- القسم التاسع: التواصل والفوتر (Contact & Footer)-->
+    <!-- === قسم التواصل === -->
     <!-- ========================================== -->
     <section id="contact" class="py-16 md:py-24 bg-brand-purpleLight relative overflow-hidden text-center">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
@@ -655,35 +617,28 @@
             </p>
             
             <div class="flex flex-col justify-center items-center gap-4 mb-10">
-                <!-- تعديل رابط ورقم الواتساب من هنا -->
                 <a href="https://wa.me/966553940572" target="_blank" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-brand-purple text-white px-8 py-4 rounded-xl font-bold text-lg md:text-xl hover:bg-brand-orange transition-colors shadow-premium hover-lift">
                     <i class="ph ph-whatsapp-logo text-2xl md:text-3xl"></i>
                     تواصل عبر الواتساب
                 </a>
             </div>
 
-            <!-- روابط السوشال ميديا بالأسفل (ضع روابط حساباتك بدلاً من #) -->
+            <!-- أيقونات السوشال ميديا -->
             <div class="flex items-center justify-center gap-3 md:gap-4">
-                <a href="#" target="_blank" class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center text-brand-purple hover:bg-brand-purple hover:text-white transition-all hover-lift shadow-sm">
+                <a href="https://www.tiktok.com/@abdallah.shbat?_r=1&_t=ZS-95mhGTNhlp6" target="_blank" class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center text-brand-purple hover:bg-brand-purple hover:text-white transition-all hover-lift shadow-sm">
                     <i class="ph ph-tiktok-logo text-xl md:text-2xl"></i>
                 </a>
-                <a href="#" target="_blank" class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center text-brand-purple hover:bg-brand-purple hover:text-white transition-all hover-lift shadow-sm">
+                <a href="https://www.linkedin.com/in/%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%84%D9%87-%D8%A8%D9%86-%D9%85%D8%AD%D9%85%D8%AF-%D8%B4%D8%A8%D8%A7%D8%B7-88101339b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center text-brand-purple hover:bg-brand-purple hover:text-white transition-all hover-lift shadow-sm">
                     <i class="ph ph-linkedin-logo text-xl md:text-2xl"></i>
                 </a>
-                <a href="#" target="_blank" class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center text-brand-purple hover:bg-yellow-400 hover:text-white transition-all hover-lift shadow-sm">
+                <a href="https://snapchat.com/t/0yl8qSAe" target="_blank" class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center text-brand-purple hover:bg-yellow-400 hover:text-white transition-all hover-lift shadow-sm">
                     <i class="ph ph-snapchat-logo text-xl md:text-2xl"></i>
-                </a>
-                <a href="#" target="_blank" class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center text-brand-purple hover:bg-pink-600 hover:text-white transition-all hover-lift shadow-sm">
-                    <i class="ph ph-instagram-logo text-xl md:text-2xl"></i>
-                </a>
-                <a href="#" target="_blank" class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white flex items-center justify-center text-brand-purple hover:bg-red-600 hover:text-white transition-all hover-lift shadow-sm">
-                    <i class="ph ph-youtube-logo text-xl md:text-2xl"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- الفوتر -->
+    <!-- التذييل -->
     <footer class="bg-brand-purpleDark py-6">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <span class="font-bold text-white text-base">عبدالله بن محمد شباط</span>
@@ -697,12 +652,12 @@
     </button>
 
     <!-- ========================================== -->
-    <!-- أكواد البرمجة (JavaScript) مقسمة ومرتبة    -->
+    <!-- === أكواد الجافاسكريبت === -->
     <!-- ========================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- 1. القائمة الجانبية (Mobile Menu) ---
+            /* --- 1. القائمة الجانبية --- */
             const menuBtn = document.getElementById('menu-btn');
             const closeMenuBtn = document.getElementById('close-menu');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -719,8 +674,7 @@
             menuOverlay.addEventListener('click', toggleMenu);
             menuLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-
-            // --- 2. زر العودة للأعلى (Scroll to Top) ---
+            /* --- 2. زر العودة للأعلى --- */
             const scrollToTopBtn = document.getElementById('scrollToTop');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 400) {
@@ -733,8 +687,7 @@
             });
             scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-
-            // --- 3. تأثيرات الظهور المتدرج (Reveal Animations) ---
+            /* --- 3. الظهور المتدرج --- */
             const reveals = document.querySelectorAll('.reveal');
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -746,23 +699,22 @@
             }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
             reveals.forEach(reveal => revealObserver.observe(reveal));
 
-
-            // --- 4. عداد الأرقام التلقائي (Counters) ---
+            /* --- 4. عداد الأرقام المطور بالسرعات والخطوات المخصصة --- */
             const counters = document.querySelectorAll('.counter-value');
             const counterObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if(entry.isIntersecting) {
                         const counter = entry.target;
                         const target = +counter.getAttribute('data-target');
+                        const step = +counter.getAttribute('data-step') || 1;
+                        const speed = +counter.getAttribute('data-speed') || 30; // تأخير أجزاء من الثانية
+                        
                         const updateCount = () => {
                             const count = +counter.innerText;
-                            let increment = target / 100;
-                            if (target >= 1000000) increment = target / 40; 
-                            else if (target > 100) increment = 50;
-                            
                             if(count < target) {
-                                counter.innerText = Math.ceil(count + increment);
-                                setTimeout(updateCount, 30);
+                                // التأكد من أن الإضافة لا تتجاوز الهدف النهائي
+                                counter.innerText = (count + step > target) ? target : count + step;
+                                setTimeout(updateCount, speed);
                             } else {
                                 counter.innerText = target;
                             }
@@ -774,14 +726,13 @@
             }, { threshold: 0.5 });
             counters.forEach(counter => counterObserver.observe(counter));
 
-
-            // --- 5. صور شركاء النجاح (السحب والتمرير التلقائي) ---
+            /* --- 5. شركاء النجاح (سحب بحرية مع استمرار الحركة التلقائية) --- */
             const content1 = document.getElementById('brands-content-1');
             const content2 = document.getElementById('brands-content-2');
             const content3 = document.getElementById('brands-content-3');
             
-            // إضافة صور الشعارات برمجياً (تأكد من وجود مجلد اسمه image وبداخله صور مرقمة من 1 إلى 27)
             function createBrandCard(index) {
+                // استرجاع التصميم الأساسي ذو المربع الأبيض للشعارات
                 return `<div class="w-20 h-20 md:w-32 md:h-32 bg-white rounded-2xl shadow-sm border border-brand-purple/10 flex items-center justify-center p-2 md:p-3 shrink-0 mx-1.5 md:mx-3 transition-transform hover:-translate-y-1">
                             <img src="image/${index}.png" class="w-full h-full object-contain" onerror="this.outerHTML='<span class=\\'text-brand-purple font-bold text-xs md:text-sm\\'>شريك ${index}</span>'">
                         </div>`;
@@ -789,45 +740,101 @@
             
             if (content1 && content2 && content3) {
                 let html1 = '', html2 = '', html3 = '';
+                // توزيع الـ 27 شريكاً على 3 صفوف
                 for(let i=1; i<=9; i++) html1 += createBrandCard(i);
                 for(let i=10; i<=18; i++) html2 += createBrandCard(i);
                 for(let i=19; i<=28; i++) html3 += createBrandCard(i);
                 
+                // دمج الكود مرتين لكل شريط للحصول على تأثير اللوب المستمر بدون تقطيع
                 content1.innerHTML = html1 + html1;
                 content2.innerHTML = html2 + html2;
                 content3.innerHTML = html3 + html3;
             }
 
+            // دالة السحب الذكية التي تدمج بين السحب (بالماوس/اللمس) وتتوقف عند التأشير
             function autoScrollWithManualDrag(sliderId, direction, speedVal) {
                 const slider = document.getElementById(sliderId);
                 if(!slider) return;
                 
-                let isDown = false; let isHovered = false; let startX; let scrollLeft; let autoScrollInterval;
+                let isDown = false;
+                let isHovered = false; // تتبع حالة مؤشر الماوس
+                let startX;
+                let scrollLeft;
+                let autoScrollInterval;
 
-                // Mouse Events
-                slider.addEventListener('mouseenter', () => { isHovered = true; cancelAnimationFrame(autoScrollInterval); });
-                slider.addEventListener('mouseleave', () => { isHovered = false; isDown = false; slider.classList.remove('cursor-grabbing'); startAutoScroll(); });
-                slider.addEventListener('mousedown', (e) => { isDown = true; slider.classList.add('cursor-grabbing'); startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; cancelAnimationFrame(autoScrollInterval); });
-                slider.addEventListener('mouseup', () => { isDown = false; slider.classList.remove('cursor-grabbing'); if (!isHovered) startAutoScroll(); });
-                slider.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const walk = ((e.pageX - slider.offsetLeft) - startX) * 2; slider.scrollLeft = scrollLeft - walk; });
+                // إعدادات الماوس (الحاسب)
+                slider.addEventListener('mouseenter', () => {
+                    isHovered = true;
+                    cancelAnimationFrame(autoScrollInterval); // إيقاف الحركة التلقائية عند وضع المؤشر
+                });
+                
+                slider.addEventListener('mouseleave', () => { 
+                    isHovered = false; 
+                    isDown = false;
+                    slider.classList.remove('cursor-grabbing'); 
+                    startAutoScroll(); // العودة للحركة عند إبعاد المؤشر
+                });
 
-                // Touch Events
-                slider.addEventListener('touchstart', (e) => { isDown = true; startX = e.touches[0].pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; cancelAnimationFrame(autoScrollInterval); }, {passive: true});
-                slider.addEventListener('touchend', () => { isDown = false; startAutoScroll(); });
-                slider.addEventListener('touchmove', (e) => { if(!isDown) return; const walk = ((e.touches[0].pageX - slider.offsetLeft) - startX) * 2; slider.scrollLeft = scrollLeft - walk; }, {passive: true});
+                slider.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    slider.classList.add('cursor-grabbing');
+                    startX = e.pageX - slider.offsetLeft;
+                    scrollLeft = slider.scrollLeft;
+                    cancelAnimationFrame(autoScrollInterval);
+                });
+                
+                slider.addEventListener('mouseup', () => { 
+                    isDown = false; 
+                    slider.classList.remove('cursor-grabbing'); 
+                    if (!isHovered) {
+                        startAutoScroll();
+                    }
+                });
+                
+                slider.addEventListener('mousemove', (e) => {
+                    if(!isDown) return;
+                    e.preventDefault();
+                    const walk = ((e.pageX - slider.offsetLeft) - startX) * 2; 
+                    slider.scrollLeft = scrollLeft - walk; 
+                });
+
+                // إعدادات اللمس (الجوال)
+                slider.addEventListener('touchstart', (e) => {
+                    isDown = true;
+                    startX = e.touches[0].pageX - slider.offsetLeft;
+                    scrollLeft = slider.scrollLeft;
+                    cancelAnimationFrame(autoScrollInterval); // إيقاف الحركة عند اللمس
+                }, {passive: true});
+                
+                slider.addEventListener('touchend', () => { 
+                    isDown = false; 
+                    startAutoScroll(); // استئناف الحركة فور رفع الإصبع
+                });
+                
+                slider.addEventListener('touchmove', (e) => {
+                    if(!isDown) return;
+                    const walk = ((e.touches[0].pageX - slider.offsetLeft) - startX) * 2;
+                    slider.scrollLeft = scrollLeft - walk;
+                }, {passive: true});
 
                 function startAutoScroll() {
                     cancelAnimationFrame(autoScrollInterval);
-                    if (isHovered || isDown) return; 
+                    if (isHovered || isDown) return; // منع التفعيل إذا كان المؤشر أو الإصبع لا يزال موجوداً
                     
                     function step() {
                         if(!isDown && !isHovered) {
                             if (direction === 'rtl') {
-                                slider.scrollLeft -= speedVal;
-                                if(Math.abs(slider.scrollLeft) >= (slider.scrollWidth / 2)) slider.scrollLeft = 0;
+                                slider.scrollLeft -= speedVal; // حركة لليسار
+                                // اللوب المستمر
+                                if(Math.abs(slider.scrollLeft) >= (slider.scrollWidth / 2)) {
+                                    slider.scrollLeft = 0;
+                                }
                             } else {
-                                slider.scrollLeft += speedVal;
-                                if(Math.abs(slider.scrollLeft) <= 1) slider.scrollLeft = -(slider.scrollWidth / 2);
+                                slider.scrollLeft += speedVal; // حركة لليمين
+                                // اللوب المستمر
+                                if(Math.abs(slider.scrollLeft) <= 1) {
+                                    slider.scrollLeft = -(slider.scrollWidth / 2);
+                                }
                             }
                         }
                         autoScrollInterval = requestAnimationFrame(step);
@@ -835,37 +842,56 @@
                     autoScrollInterval = requestAnimationFrame(step);
                 }
                 
-                if (direction === 'ltr') slider.scrollLeft = -(slider.scrollWidth / 2);
+                // ضبط البداية للشريط المتحرك لليمين لضمان عمل اللوب بشكل صحيح
+                if (direction === 'ltr') {
+                    slider.scrollLeft = -(slider.scrollWidth / 2);
+                }
+                
                 startAutoScroll();
             }
 
-            autoScrollWithManualDrag('slider-1', 'rtl', 1.2); 
-            autoScrollWithManualDrag('slider-2', 'ltr', 1.2); 
-            autoScrollWithManualDrag('slider-3', 'rtl', 1.2); 
+            autoScrollWithManualDrag('slider-1', 'rtl', 1.2); // شريط 1
+            autoScrollWithManualDrag('slider-2', 'ltr', 1.2); // شريط 2
+            autoScrollWithManualDrag('slider-3', 'rtl', 1.2); // شريط 3
 
-
-            // --- 6. سحب قسم التوصيات (Testimonials) ---
+            // سحب قسم التوصيات البسيط
             function setupSimpleDrag(sliderId) {
                 const slider = document.getElementById(sliderId);
                 if(!slider) return;
                 let isDown = false; let startX; let scrollLeft;
-                slider.addEventListener('mousedown', (e) => { isDown = true; slider.classList.add('cursor-grabbing'); startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
+                slider.addEventListener('mousedown', (e) => {
+                    isDown = true; slider.classList.add('cursor-grabbing'); startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
+                });
                 slider.addEventListener('mouseleave', () => { isDown = false; slider.classList.remove('cursor-grabbing');});
                 slider.addEventListener('mouseup', () => { isDown = false; slider.classList.remove('cursor-grabbing');});
-                slider.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); slider.scrollLeft = scrollLeft - ((e.pageX - slider.offsetLeft - startX) * 2); });
-                slider.addEventListener('touchstart', (e) => { isDown = true; startX = e.touches[0].pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; }, {passive: true});
+                slider.addEventListener('mousemove', (e) => {
+                    if(!isDown) return; e.preventDefault();
+                    slider.scrollLeft = scrollLeft - ((e.pageX - slider.offsetLeft - startX) * 2); 
+                });
+                // لمس التوصيات
+                slider.addEventListener('touchstart', (e) => {
+                    isDown = true; startX = e.touches[0].pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
+                }, {passive: true});
                 slider.addEventListener('touchend', () => isDown = false);
-                slider.addEventListener('touchmove', (e) => { if(!isDown) return; slider.scrollLeft = scrollLeft - ((e.touches[0].pageX - slider.offsetLeft - startX) * 2); }, {passive: true});
+                slider.addEventListener('touchmove', (e) => {
+                    if(!isDown) return; 
+                    slider.scrollLeft = scrollLeft - ((e.touches[0].pageX - slider.offsetLeft - startX) * 2);
+                }, {passive: true});
             }
             setupSimpleDrag('testimonials-slider');
 
-
-            // --- 7. حركة نقاط سلايدر الخدمات في الجوال ---
+            /* --- 6. حركة نقاط سلايدر الخدمات في الجوال --- */
             const servicesSlider = document.getElementById('services-slider');
             const serviceDots = document.querySelectorAll('#services-dots button');
             const serviceCards = document.querySelectorAll('.service-card-item');
 
             if (servicesSlider && serviceDots.length > 0) {
+                // استخدام Intersection Observer لمعرفة أي بطاقة معروضة حالياً بدقة
+                const observerOptions = {
+                    root: servicesSlider,
+                    threshold: 0.6 // تتغير النقطة عندما تظهر 60% من البطاقة
+                };
+
                 const servicesObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -883,10 +909,11 @@
                             }
                         }
                     });
-                }, { root: servicesSlider, threshold: 0.6 });
+                }, observerOptions);
 
                 serviceCards.forEach(card => servicesObserver.observe(card));
 
+                // تفعيل النقر على النقاط للانتقال السريع
                 serviceDots.forEach((dot, index) => {
                     dot.addEventListener('click', () => {
                         if (serviceCards[index]) {
@@ -896,10 +923,7 @@
                 });
             }
 
-
-            // --- 8. أدوات الذكاء الاصطناعي (Gemini API) ---
-            
-            // مفتاح API (يتم توفيره تلقائياً من بيئة العمل)
+            /* --- 7. الذكاء الاصطناعي (Gemini API) --- */
             const apiKey = ""; 
             
             async function fetchGeminiWithRetry(prompt, systemPrompt, retries = 5) {
@@ -922,7 +946,7 @@
                 }
             }
 
-            // أداة 1: حل المشكلات (Lead Magnet)
+            // أداة حل المشكلات (Lead Magnet الجديد)
             const probBtn = document.getElementById('ai-solve-btn');
             const probInput = document.getElementById('ai-problem-input');
             const probResultBox = document.getElementById('ai-problem-result');
@@ -944,7 +968,7 @@
                     probOutputContainer.classList.add('hidden');
                     probLoading.classList.remove('hidden');
 
-                    // يمكنك تعديل التوجيه للذكاء الاصطناعي (Prompt) من هنا
+                    // التوجيه الجديد للذكاء الاصطناعي لإعطاء معلومة مفيدة وقابلة للتطبيق ثم التوقف
                     const sysPrompt = "أنت الأستاذ عبدالله شباط، خبير تسويق استراتيجي. سيطرح العميل مشكلة تسويقية. ابدأ بإعطاء **معلومة واحدة مفيدة جداً وقابلة للتطبيق فوراً** كجزء من الحل، ثم توقف فجأة واكتب عبارة تشويقية مثل 'ولكن هذا جزء بسيط من الحل...' لتدفعه للتواصل معك لمعرفة الاستراتيجية الكاملة. اجعل الإجابة في حدود 3 أسطر فقط.";
                     
                     try {
@@ -962,7 +986,7 @@
                 });
             }
 
-            // أداة 2: التشخيص السريع (AI Diagnosis)
+            // أداة التشخيص السريع
             const aiBtn = document.getElementById('ai-generate-btn');
             const aiInput = document.getElementById('ai-product-input');
             const aiOutput = document.getElementById('ai-output');
@@ -986,7 +1010,6 @@
                     aiOutput.classList.add('hidden');
                     aiLoading.classList.remove('hidden');
 
-                    // يمكنك تعديل التوجيه للذكاء الاصطناعي (Prompt) من هنا
                     const sysPrompt = "أنت الأستاذ 'عبدالله شباط' خبير التسويق الرقمي. سيطلب منك المستخدم تشخيص لمنتجه. قم بالرد باحترافية وبشكل مختصر (نقاط واضحة) تتضمن الآتي فقط: 1. الجمهور. 2. المنصة الأنسب. 3. الألم (المشكلة). 4. نوع المحتوى. 5. Hook البداية. استخدم لغة عربية فخمة وابرز الكلمات المفتاحية.";
                     
                     try {
