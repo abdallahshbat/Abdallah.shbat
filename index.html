@@ -964,49 +964,28 @@
                 });
             }
 
-            /* --- 7. الذكاء الاصطناعي (Gemini API) --- */
-           async function fetchGeminiWithRetry(prompt, systemPrompt) {
-
- const response = await fetch("/api/gemini", {
-   method: "POST",
-   headers: {
+          /* --- 7. الذكاء الاصطناعي (Gemini API) --- */
+async function fetchGeminiWithRetry(prompt, systemPrompt) {
+  const response = await fetch("/api/gemini", {
+    method: "POST",
+    headers: {
       "Content-Type":"application/json"
-   },
-   body: JSON.stringify({
+    },
+    body: JSON.stringify({
       prompt,
       systemPrompt
-   })
- });
+    })
+  });
 
- if(!response.ok){
-   throw new Error("API Error");
- }
+  if (!response.ok) {
+    throw new Error("API Error");
+  }
 
- const data = await response.json();
-
- return data.text;
+  const data = await response.json();
+  return data.text;
 }
-            (prompt, systemPrompt, retries = 5) {
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-                const payload = {
-                    contents: [{ parts: [{ text: prompt }] }],
-                    systemInstruction: { parts: [{ text: systemPrompt }] }
-                };
-                const delays = [1000, 2000, 4000, 8000, 16000];
-                for (let i = 0; i < retries; i++) {
-                    try {
-                        const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                        if (!response.ok) throw new Error('API Error');
-                        const data = await response.json();
-                        return data.candidates?.[0]?.content?.parts?.[0]?.text || "عذراً، حدث خطأ.";
-                    } catch (error) {
-                        if (i === retries - 1) throw error;
-                        await new Promise(resolve => setTimeout(resolve, delays[i]));
-                    }
-                }
-            }
 
-            // أداة حل المشكلات (Lead Magnet الجديد)
+// أداة حل المشكلات (Lead Magnet الجديد)
             const probBtn = document.getElementById('ai-solve-btn');
             const probInput = document.getElementById('ai-problem-input');
             const probResultBox = document.getElementById('ai-problem-result');
