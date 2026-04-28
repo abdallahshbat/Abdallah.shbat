@@ -9,286 +9,182 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-white min-h-screen">
 
 <header class="bg-white shadow-sm border-b sticky top-0 z-50">
-<div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
+  <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
 
-<button id="menuBtn"
-class="bg-purple-900 text-white px-4 py-3 rounded-xl font-bold">
-☰ التقارير
-</button>
+    <button id="menuBtn" class="bg-purple-900 text-white px-4 py-3 rounded-xl font-bold">
+      ☰ التقارير
+    </button>
 
-<div class="text-left">
-<h1 class="font-bold text-purple-900">
-بوابة العميل
-</h1>
-<p id="emailBox" class="text-sm text-gray-500"></p>
-</div>
+    <div class="text-left">
+      <h1 id="brandBox" class="font-bold text-purple-900">بوابة العميل</h1>
+      <p id="emailBox" class="text-sm text-gray-500"></p>
+    </div>
 
-</div>
+  </div>
 </header>
 
-<div id="overlay"
-class="hidden fixed inset-0 bg-black/50 z-40"></div>
+<div id="overlay" class="hidden fixed inset-0 bg-black/50 z-40"></div>
 
 <aside id="sideMenu"
 class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 translate-x-full transition-transform duration-300 p-6">
 
-<div class="flex justify-between items-center mb-8">
-<h2 class="text-2xl font-bold text-purple-900">
-تقاريري
-</h2>
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-2xl font-bold text-purple-900">تقاريري</h2>
+    <button id="closeMenu" class="text-2xl">×</button>
+  </div>
 
-<button id="closeMenu" class="text-2xl">
-×
-</button>
-</div>
+  <div id="reportsList" class="space-y-3"></div>
 
-<div id="reportsList" class="space-y-3"></div>
-
-<button id="logoutBtn"
-class="mt-10 w-full bg-red-600 text-white py-3 rounded-xl font-bold">
-تسجيل الخروج
-</button>
+  <button id="logoutBtn"
+  class="mt-10 w-full bg-red-600 text-white py-3 rounded-xl font-bold">
+    تسجيل الخروج
+  </button>
 
 </aside>
 
+<main>
 
+  <section id="welcomeBox" class="max-w-5xl mx-auto bg-white rounded-3xl shadow p-8 mt-6 mb-6">
+    <h2 class="text-3xl font-bold text-purple-900 mb-3">
+      مرحبًا بك في لوحة التقارير
+    </h2>
+    <p class="text-gray-600 leading-8">
+      من القائمة يمكنك استعراض التقارير الشهرية الخاصة بك.
+    </p>
+  </section>
 
-<main class="max-w-7xl mx-auto p-5">
+  <div id="loading" class="text-center text-xl py-10">
+    جاري تحميل تقاريرك...
+  </div>
 
-<section id="welcomeBox"
-class="bg-white rounded-3xl shadow p-8 mb-6">
+  <iframe
+    id="reportFrame"
+    class="hidden w-full min-h-[calc(100vh-75px)] border-0 bg-white">
+  </iframe>
 
-<h2 class="text-3xl font-bold text-purple-900 mb-3">
-مرحبًا بك في لوحة التقارير
-</h2>
-
-<p class="text-gray-600 leading-8">
-من القائمة يمكنك استعراض التقارير الشهرية الخاصة بك.
-</p>
-
-</section>
-
-
-<div id="loading"
-class="text-center text-xl py-10">
-جاري تحميل تقاريرك...
-</div>
-
-
-<iframe
-id="reportFrame"
-class="hidden w-full min-h-[calc(100vh-90px)] border-0 bg-white">
-</iframe>
-
-
-<div id="errorBox"
-class="hidden bg-red-50 text-red-700 p-6 rounded-2xl font-bold">
-لا توجد تقارير مرتبطة بهذا الحساب
-</div>
+  <div id="errorBox"
+  class="hidden max-w-5xl mx-auto mt-6 bg-red-50 text-red-700 p-6 rounded-2xl font-bold">
+    لا توجد تقارير مرتبطة بهذا الحساب حتى الآن.
+  </div>
 
 </main>
 
-
-
 <script>
+const SUPABASE_URL = "https://vmefjlfubcqgeclezrpo.supabase.co";
 
-const SUPABASE_URL =
-"https://vmefjlfubcqgeclezrpo.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_G6tsEoDkrQ_6wv--7kTEzQ_zvGbA7zS";
 
-const SUPABASE_ANON_KEY =
-"sb_publishable_G6tsEoDkrQ_6wv--7kTEzQ_zvGbA7zS";
-
-const supabaseClient=
-supabase.createClient(
-SUPABASE_URL,
-SUPABASE_ANON_KEY
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
 );
 
-let reports=[];
+let reports = [];
 
-
-const menuBtn=document.getElementById("menuBtn");
-const closeMenu=document.getElementById("closeMenu");
-const sideMenu=document.getElementById("sideMenu");
-const overlay=document.getElementById("overlay");
-
+const menuBtn = document.getElementById("menuBtn");
+const closeMenu = document.getElementById("closeMenu");
+const sideMenu = document.getElementById("sideMenu");
+const overlay = document.getElementById("overlay");
 
 function openMenu(){
-sideMenu.classList.remove("translate-x-full");
-overlay.classList.remove("hidden");
+  sideMenu.classList.remove("translate-x-full");
+  overlay.classList.remove("hidden");
 }
 
 function closeSideMenu(){
-sideMenu.classList.add("translate-x-full");
-overlay.classList.add("hidden");
+  sideMenu.classList.add("translate-x-full");
+  overlay.classList.add("hidden");
 }
 
-menuBtn.addEventListener("click",openMenu);
-closeMenu.addEventListener("click",closeSideMenu);
-overlay.addEventListener("click",closeSideMenu);
-
-
+menuBtn.addEventListener("click", openMenu);
+closeMenu.addEventListener("click", closeSideMenu);
+overlay.addEventListener("click", closeSideMenu);
 
 async function loadDashboard(){
 
-const {data:{session}}
-=
-await supabaseClient.auth.getSession();
+  const { data:{session} } = await supabaseClient.auth.getSession();
 
-if(!session){
-window.location.href="login.html";
-return;
+  if(!session){
+    window.location.href = "login.html";
+    return;
+  }
+
+  document.getElementById("emailBox").innerText = session.user.email;
+
+  const { data, error } = await supabaseClient
+    .from("client_reports")
+    .select("brand_name, report_html, report_month, report_order")
+    .order("report_order", { ascending: true });
+
+  document.getElementById("loading").classList.add("hidden");
+
+  if(error || !data || data.length === 0){
+    document.getElementById("errorBox").classList.remove("hidden");
+    return;
+  }
+
+  reports = data;
+
+  document.getElementById("brandBox").innerText =
+    reports[0].brand_name || "بوابة العميل";
+
+  renderReportsList();
 }
-
-document.getElementById(
-"emailBox"
-).innerText=session.user.email;
-
-
-const {data,error}
-=
-await supabaseClient
-.from("client_reports")
-.select("*")
-.order(
-"report_order",
-{ascending:true}
-);
-
-
-document.getElementById(
-"loading"
-).classList.add("hidden");
-
-
-if(error || !data || data.length===0){
-
-document.getElementById(
-"errorBox"
-).classList.remove("hidden");
-
-return;
-}
-
-
-reports=data;
-
-renderReportsList();
-
-}
-
-
 
 function renderReportsList(){
 
-const list=
-document.getElementById(
-"reportsList"
-);
+  const list = document.getElementById("reportsList");
+  list.innerHTML = "";
 
-list.innerHTML="";
+  reports.forEach((report, index) => {
 
+    const btn = document.createElement("button");
 
-reports.forEach((report,index)=>{
+    btn.className =
+      "w-full text-right p-4 rounded-2xl bg-purple-50 hover:bg-purple-900 hover:text-white transition font-bold border";
 
-const btn=
-document.createElement(
-"button"
-);
+    btn.innerHTML = `
+      <div>${report.report_month || "تقرير بدون شهر"}</div>
+    `;
 
-btn.className=
-"w-full text-right p-4 rounded-2xl bg-purple-50 hover:bg-purple-900 hover:text-white transition font-bold border";
+    btn.addEventListener("click", () => {
+      showReport(index);
+      closeSideMenu();
+    });
 
-
-btn.innerHTML=`
-<div>${report.report_month}</div>
-`;
-
-
-btn.addEventListener(
-"click",
-()=>{
-showReport(index);
-closeSideMenu();
+    list.appendChild(btn);
+  });
 }
-);
-
-
-list.appendChild(btn);
-
-});
-
-}
-
-
 
 function showReport(index){
 
-const report=reports[index];
+  const report = reports[index];
 
-document.getElementById(
-"welcomeBox"
-).classList.add("hidden");
+  document.getElementById("welcomeBox").classList.add("hidden");
 
+  const frame = document.getElementById("reportFrame");
 
-document.getElementById(
-"brandName"
-).innerText=
-report.brand_name || "";
+  frame.srcdoc =
+    report.report_html ||
+    "<h1 style='font-family:Arial;text-align:center;margin-top:80px'>لا يوجد محتوى لهذا التقرير</h1>";
 
+  frame.classList.remove("hidden");
 
-document.getElementById(
-"reportTitle"
-).innerText=
-report.report_month;
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
 
-
-document.getElementById(
-"reportHeader"
-).classList.remove("hidden");
-
-
-const frame=
-document.getElementById(
-"reportFrame"
-);
-
-frame.srcdoc=
-report.report_html ||
-"<h1>لا يوجد محتوى للتقرير</h1>";
-
-frame.classList.remove("hidden");
-
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+  await supabaseClient.auth.signOut();
+  window.location.href = "login.html";
 });
 
-}
-
-
-
-document.getElementById(
-"logoutBtn"
-).addEventListener(
-"click",
-async()=>{
-
-await supabaseClient.auth.signOut();
-
-window.location.href=
-"login.html";
-
-}
-);
-
-
 loadDashboard();
-
 </script>
 
 </body>
