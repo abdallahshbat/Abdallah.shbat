@@ -5,32 +5,114 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول | بوابة العملاء</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- استيراد خط Cairo لإضافة لمسة جمالية للغة العربية -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+    }
+    /* حركة دخول ناعمة للبطاقة */
+    @keyframes fade-in-up {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    /* تأثير متوهج خفيف في الخلفية */
+    .bg-blobs {
+      background-image: 
+        radial-gradient(at 0% 0%, hsla(283,100%,74%,0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(283,100%,74%,0.15) 0px, transparent 50%);
+    }
+  </style>
 </head>
 
-<body class="min-h-screen bg-[#3B0764] flex items-center justify-center px-4">
+<!-- خلفية بتدرج لوني أنيق مع تأثيرات متوهجة -->
+<body class="min-h-screen bg-gradient-to-br from-[#2a044a] via-[#3B0764] to-[#1a0130] bg-blobs flex items-center justify-center px-4 relative overflow-hidden">
 
-  <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8">
-    <h1 class="text-3xl font-bold text-center text-[#3B0764] mb-2">تسجيل الدخول</h1>
-    <p class="text-center text-gray-500 mb-8">أدخل بياناتك للوصول إلى تقريرك الخاص</p>
+  <!-- بطاقة تسجيل الدخول -->
+  <div class="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 p-8 sm:p-10 animate-fade-in-up relative z-10">
+    
+    <!-- الشعار أو الأيقونة العلوية -->
+    <div class="w-16 h-16 bg-[#F3E8FF] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-inner">
+      <svg class="w-8 h-8 text-[#6B21A8]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+      </svg>
+    </div>
 
-    <div class="space-y-4">
-      <input id="email" type="email" placeholder="البريد الإلكتروني"
-        class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#6B21A8]">
+    <h1 class="text-3xl font-extrabold text-center text-gray-900 mb-2">مرحباً بعودتك</h1>
+    <p class="text-center text-gray-500 mb-8 font-medium text-sm">أدخل بياناتك للوصول إلى تقريرك الخاص</p>
 
-      <input id="password" type="password" placeholder="كلمة المرور"
-        class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#6B21A8]">
+    <div class="space-y-5">
+      <!-- حقل البريد الإلكتروني -->
+      <div class="relative group">
+        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-[#6B21A8] transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
+        </div>
+        <input id="email" type="email" placeholder="البريد الإلكتروني"
+          class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl pr-11 pl-4 py-3.5 transition-all duration-300 focus:outline-none focus:border-[#6B21A8] focus:ring-4 focus:ring-[#6B21A8]/10 focus:bg-white placeholder-gray-400 font-medium">
+      </div>
 
+      <!-- حقل كلمة المرور -->
+      <div class="relative group">
+        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-[#6B21A8] transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
+        </div>
+        <input id="password" type="password" placeholder="كلمة المرور"
+          class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl pr-11 pl-12 py-3.5 transition-all duration-300 focus:outline-none focus:border-[#6B21A8] focus:ring-4 focus:ring-[#6B21A8]/10 focus:bg-white placeholder-gray-400 font-medium">
+        
+        <!-- زر إظهار/إخفاء كلمة المرور -->
+        <button type="button" id="togglePasswordBtn" class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none transition-colors">
+          <svg id="eyeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+          </svg>
+          <svg id="eyeOffIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- رسالة الخطأ أصبحت بشكل صندوق تنبيه أنيق -->
+      <p id="errorMsg" class="hidden bg-red-50 border-r-4 border-red-500 text-red-700 p-3 rounded-lg text-sm font-semibold shadow-sm text-right transition-all duration-300"></p>
+
+      <!-- زر الدخول المحسن -->
       <button id="loginBtn"
-        class="w-full bg-[#6B21A8] text-white font-bold py-3 rounded-xl hover:bg-[#3B0764] transition">
-        دخول
+        class="w-full bg-gradient-to-r from-[#6B21A8] to-[#9333EA] text-white font-bold text-lg py-3.5 rounded-xl shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2">
+        <span>تسجيل الدخول</span>
+        <svg class="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
       </button>
 
-      <p id="errorMsg" class="hidden text-center text-red-600 font-semibold"></p>
     </div>
   </div>
 
   <script>
+    // ----------------------------------------------------
+    // إضافة منطق إظهار وإخفاء كلمة المرور (جديد)
+    // ----------------------------------------------------
+    const passwordInput = document.getElementById('password');
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const eyeIcon = document.getElementById('eyeIcon');
+    const eyeOffIcon = document.getElementById('eyeOffIcon');
+
+    togglePasswordBtn.addEventListener('click', () => {
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.classList.add('hidden');
+        eyeOffIcon.classList.remove('hidden');
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.classList.remove('hidden');
+        eyeOffIcon.classList.add('hidden');
+      }
+    });
+
+    // ----------------------------------------------------
+    // المنطق البرمجي الأصلي الخاص بك (لم يتم تغييره)
+    // ----------------------------------------------------
     const SUPABASE_URL = "https://vmefjlfubcqgeclezrpo.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_G6tsEoDkrQ_6wv--7kTEzQ_zvGbA7zS";
 
@@ -41,7 +123,7 @@
 
     loginBtn.addEventListener("click", async () => {
       const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value.trim();
+      const password = passwordInput.value.trim();
 
       errorMsg.classList.add("hidden");
 
@@ -52,7 +134,13 @@
       }
 
       loginBtn.disabled = true;
-      loginBtn.textContent = "جاري التحقق...";
+      loginBtn.innerHTML = `
+        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>جاري التحقق...</span>
+      `;
 
       const { error } = await supabaseClient.auth.signInWithPassword({
         email,
@@ -63,7 +151,10 @@
         errorMsg.textContent = "بيانات الدخول غير صحيحة";
         errorMsg.classList.remove("hidden");
         loginBtn.disabled = false;
-        loginBtn.textContent = "دخول";
+        loginBtn.innerHTML = `
+          <span>تسجيل الدخول</span>
+          <svg class="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+        `;
         return;
       }
 
