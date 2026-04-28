@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول | بوابة العملاء</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
 
+<body class="min-h-screen bg-[#3B0764] flex items-center justify-center px-4">
+
+  <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8">
+    <h1 class="text-3xl font-bold text-center text-[#3B0764] mb-2">تسجيل الدخول</h1>
+    <p class="text-center text-gray-500 mb-8">أدخل بياناتك للوصول إلى تقريرك الخاص</p>
+
+    <div class="space-y-4">
+      <input id="email" type="email" placeholder="البريد الإلكتروني"
+        class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#6B21A8]">
+
+      <input id="password" type="password" placeholder="كلمة المرور"
+        class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#6B21A8]">
+
+      <button id="loginBtn"
+        class="w-full bg-[#6B21A8] text-white font-bold py-3 rounded-xl hover:bg-[#3B0764] transition">
+        دخول
+      </button>
+
+      <p id="errorMsg" class="hidden text-center text-red-600 font-semibold"></p>
+    </div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = "https://vmefjlfubcqgeclezrpo.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_G6tsEoDkrQ_6wv--7kTEzQ_zvGbA7zS";
+
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const loginBtn = document.getElementById("loginBtn");
+    const errorMsg = document.getElementById("errorMsg");
+
+    loginBtn.addEventListener("click", async () => {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      errorMsg.classList.add("hidden");
+
+      if (!email || !password) {
+        errorMsg.textContent = "يرجى إدخال البريد الإلكتروني وكلمة المرور";
+        errorMsg.classList.remove("hidden");
+        return;
+      }
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = "جاري التحقق...";
+
+      const { error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        errorMsg.textContent = "بيانات الدخول غير صحيحة";
+        errorMsg.classList.remove("hidden");
+        loginBtn.disabled = false;
+        loginBtn.textContent = "دخول";
+        return;
+      }
+
+      window.location.href = "dashboard.html";
+    });
+  </script>
+
+</body>
+</html>
