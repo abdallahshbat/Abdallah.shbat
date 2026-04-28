@@ -1,98 +1,164 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لوحة تقارير العميل</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بوابة العميل</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
-<body class="min-h-screen bg-gray-100 p-6">
+<body class="bg-gray-100 min-h-screen p-6">
 
-  <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-8">
+<div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-10">
 
-    <div class="flex justify-between items-center mb-8">
-      <div>
-        <h1 class="text-3xl font-bold text-[#3B0764]">لوحة تقارير العميل</h1>
-        <p id="userEmail" class="text-gray-500 mt-2"></p>
-      </div>
+<div class="flex justify-between items-center mb-10">
+<div>
+<h1 class="text-3xl font-bold text-purple-900">
+لوحة تقارير العميل
+</h1>
 
-      <button id="logoutBtn" class="bg-red-600 text-white px-5 py-2 rounded-xl">
-        تسجيل الخروج
-      </button>
-    </div>
+<p id="emailBox" class="text-gray-500 mt-2"></p>
+</div>
 
-    <div id="reportBox" class="hidden">
-      <h2 id="clientName" class="text-2xl font-bold mb-4 text-[#6B21A8]"></h2>
+<button id="logoutBtn"
+class="bg-red-600 text-white px-5 py-3 rounded-xl">
+تسجيل خروج
+</button>
+</div>
 
-      <div class="bg-purple-50 border border-purple-200 rounded-2xl p-6">
-        <p id="reportText" class="text-gray-700 leading-8"></p>
 
-        <a id="reportLink" href="#" target="_blank"
-          class="inline-block mt-6 bg-[#6B21A8] text-white px-6 py-3 rounded-xl font-bold">
-          فتح التقرير الكامل
-        </a>
-      </div>
-    </div>
+<div id="loading" class="text-center text-xl">
+جاري تحميل تقريرك...
+</div>
 
-    <div id="noReport" class="hidden bg-red-50 text-red-700 p-6 rounded-2xl font-bold">
-      لا يوجد تقرير مرتبط بهذا الحساب حتى الآن.
-    </div>
 
-  </div>
+<div id="reportBox" class="hidden">
 
-  <script>
-    const SUPABASE_URL = "https://vmefjlfubcqgeclezrpo.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_G6tsEoDkrQ_6wv--7kTEzQ_zvGbA7zS";
+<h2 id="brandName"
+class="text-3xl font-bold text-purple-700 mb-4">
+</h2>
 
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+<div class="bg-purple-50 rounded-3xl p-8 border">
 
-    const reports = {
-      "client1@test.com": {
-        name: "تقرير العميل الأول",
-        text: "هذا تقرير تجريبي خاص بالعميل الأول. هنا يمكنك وضع ملخص الأداء، نتائج الحملات، الروابط، والتوصيات.",
-        link: "reports/client1.html"
-      },
+<h3 id="reportTitle"
+class="text-2xl font-bold mb-6">
+</h3>
 
-      "client2@test.com": {
-        name: "تقرير العميل الثاني",
-        text: "هذا تقرير خاص بالعميل الثاني.",
-        link: "reports/client2.html"
-      }
-    };
+<div id="reportContent"
+class="leading-9 text-lg whitespace-pre-line">
+</div>
 
-    async function loadDashboard() {
-      const { data } = await supabaseClient.auth.getSession();
+</div>
 
-      if (!data.session) {
-        window.location.href = "login.html";
-        return;
-      }
+</div>
 
-      const email = data.session.user.email;
-      document.getElementById("userEmail").textContent = email;
 
-      const userReport = reports[email];
+<div id="errorBox"
+class="hidden bg-red-50 text-red-700 p-6 rounded-2xl font-bold">
+لا يوجد تقرير مرتبط بهذا الحساب
+</div>
 
-      if (!userReport) {
-        document.getElementById("noReport").classList.remove("hidden");
-        return;
-      }
+</div>
 
-      document.getElementById("clientName").textContent = userReport.name;
-      document.getElementById("reportText").textContent = userReport.text;
-      document.getElementById("reportLink").href = userReport.link;
-      document.getElementById("reportBox").classList.remove("hidden");
-    }
 
-    document.getElementById("logoutBtn").addEventListener("click", async () => {
-      await supabaseClient.auth.signOut();
-      window.location.href = "login.html";
-    });
 
-    loadDashboard();
-  </script>
+<script>
+
+const SUPABASE_URL =
+"https://vmefjlfubcqgeclezrpo.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_G6tsEoDkrQ_6wv--7kTEzQ_zvGbA7zS";
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
+
+
+
+async function loadDashboard(){
+
+const {data:{session}}=
+await supabaseClient.auth.getSession();
+
+
+if(!session){
+window.location.href="login.html";
+return;
+}
+
+
+document.getElementById(
+"emailBox"
+).innerText=session.user.email;
+
+
+
+const {data,error}=await supabaseClient
+.from("client_reports")
+.select("*")
+.single();
+
+
+
+document.getElementById(
+"loading"
+).classList.add("hidden");
+
+
+if(error || !data){
+
+document.getElementById(
+"errorBox"
+).classList.remove("hidden");
+
+return;
+}
+
+
+document.getElementById(
+"brandName"
+).innerText=data.brand_name;
+
+document.getElementById(
+"reportTitle"
+).innerText=data.report_title;
+
+document.getElementById(
+"reportContent"
+).innerText=data.report_content;
+
+
+document.getElementById(
+"reportBox"
+).classList.remove("hidden");
+
+}
+
+
+
+document.getElementById(
+"logoutBtn"
+).addEventListener(
+"click",
+async ()=>{
+
+await supabaseClient.auth.signOut();
+
+window.location.href="login.html";
+
+}
+);
+
+
+
+loadDashboard();
+
+</script>
 
 </body>
 </html>
