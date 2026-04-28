@@ -46,9 +46,10 @@ class="text-3xl font-bold text-purple-700 mb-4">
 class="text-2xl font-bold mb-6">
 </h3>
 
-<div id="reportContent"
-class="leading-9 text-lg whitespace-pre-line">
-</div>
+<iframe
+id="reportFrame"
+class="w-full min-h-screen rounded-2xl border">
+</iframe>
 
 </div>
 
@@ -129,8 +130,8 @@ document.getElementById(
 ).innerText=data.report_title;
 
 document.getElementById(
-"reportContent"
-).innerText=data.report_content;
+"reportFrame"
+).srcdoc = data.report_html;
 
 
 document.getElementById(
