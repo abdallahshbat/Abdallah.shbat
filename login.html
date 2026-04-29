@@ -142,7 +142,7 @@
         <span>جاري التحقق...</span>
       `;
 
-      const { error } = await supabaseClient.auth.signInWithPassword({
+      const { error, data } = await supabaseClient.auth.signInWithPassword({
         email,
         password
       });
@@ -158,7 +158,24 @@
         return;
       }
 
+
+      const userId = data?.user?.id;
+      if (userId) {
+        const { data: adminRows } = await supabaseClient
+          .from("admin_users")
+          .select("id")
+          .eq("user_id", userId)
+          .eq("is_active", true)
+          .limit(1);
+
+        if (adminRows && adminRows.length > 0) {
+          window.location.href = "admin.html";
+          return;
+        }
+      }
+
       window.location.href = "dashboard.html";
+
     });
   </script>
 
