@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة الأدمن | إدارة العملاء والتقارير</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>body{font-family:system-ui,-apple-system,Segoe UI,Tahoma,sans-serif}</style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+  <header class="bg-purple-900 text-white p-4 flex justify-between items-center">
+    <h1 class="font-bold text-xl">لوحة الأدمن</h1>
+    <button id="logoutBtn" class="bg-red-500 px-4 py-2 rounded-lg">تسجيل الخروج</button>
+  </header>
+
+  <main class="max-w-7xl mx-auto p-4 grid md:grid-cols-2 gap-4">
+    <section class="bg-white rounded-2xl p-4 shadow">
+      <h2 class="font-bold mb-3">إضافة براند جديد</h2>
+      <form id="brandForm" class="space-y-3">
+        <input id="brandName" class="w-full border rounded-lg p-2" placeholder="اسم البراند" required>
+        <input id="brandLogo" class="w-full border rounded-lg p-2" placeholder="رابط شعار البراند" required>
+        <button class="bg-purple-700 text-white px-4 py-2 rounded-lg">حفظ البراند</button>
+      </form>
+    </section>
+
+    <section class="bg-white rounded-2xl p-4 shadow">
+      <h2 class="font-bold mb-3">إنشاء حساب عميل</h2>
+      <form id="clientForm" class="space-y-3">
+        <select id="clientBrand" class="w-full border rounded-lg p-2" required></select>
+        <input id="clientEmail" type="email" class="w-full border rounded-lg p-2" placeholder="الإيميل" required>
+        <input id="clientPassword" type="password" class="w-full border rounded-lg p-2" placeholder="كلمة المرور" required>
+        <button class="bg-purple-700 text-white px-4 py-2 rounded-lg">إنشاء الحساب</button>
+      </form>
+      <p class="text-xs text-gray-500 mt-2">مهم: إنشاء المستخدم يتطلب Service Role Key داخل Edge Function آمنة.</p>
+    </section>
+
+    <section class="bg-white rounded-2xl p-4 shadow md:col-span-2">
+      <h2 class="font-bold mb-3">إضافة تقرير</h2>
+      <form id="reportForm" class="grid md:grid-cols-3 gap-3">
+        <select id="reportBrand" class="border rounded-lg p-2" required></select>
+        <input id="reportMonth" class="border rounded-lg p-2" placeholder="مثال: أبريل 2026" required>
+        <input id="reportOrders" type="number" class="border rounded-lg p-2" placeholder="عدد الطلبات">
+        <input id="reportSpend" type="number" step="0.01" class="border rounded-lg p-2" placeholder="الإنفاق">
+        <input id="reportImpressions" type="number" class="border rounded-lg p-2" placeholder="مرات الظهور">
+        <input id="reportReach" type="number" class="border rounded-lg p-2" placeholder="الوصول">
+        <input id="reportClicks" type="number" class="border rounded-lg p-2" placeholder="النقرات">
+        <input id="reportCtr" type="number" step="0.01" class="border rounded-lg p-2" placeholder="CTR %">
+        <input id="reportCpc" type="number" step="0.01" class="border rounded-lg p-2" placeholder="CPC">
+        <input id="reportSales" type="number" step="0.01" class="border rounded-lg p-2" placeholder="قيمة المبيعات">
+        <input id="reportRoas" type="number" step="0.01" class="border rounded-lg p-2" placeholder="ROAS">
+        <textarea id="reportNotes" class="border rounded-lg p-2 md:col-span-3" placeholder="ملاحظات"></textarea>
+        <textarea id="reportReco" class="border rounded-lg p-2 md:col-span-3" placeholder="توصيات"></textarea>
+        <label class="md:col-span-3 text-sm">أو ارفع ملف HTML للتقرير</label>
+        <input id="reportHtmlFile" type="file" accept=".html,text/html" class="border rounded-lg p-2 md:col-span-3">
+        <button class="bg-green-600 text-white px-4 py-2 rounded-lg md:col-span-3">حفظ التقرير</button>
+      </form>
+    </section>
+
+    <section class="bg-white rounded-2xl p-4 shadow md:col-span-2">
+      <h2 class="font-bold mb-3">التقارير الحالية</h2>
+      <div id="reportsTable" class="overflow-auto"></div>
+    </section>
+  </main>
+
+<script>
+const SUPABASE_URL = "https://vmefjlfubcqgeclezrpo.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_G6tsEoDkrQ_6wv--7kTEzQ_zvGbA7zS";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let brands = [];
+
+function reportTemplate(data){
+  return `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><style>body{font-family:Arial;padding:24px;background:#faf5ff}h1{color:#581c87}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:#fff;border:1px solid #ddd;padding:12px;border-radius:10px}</style></head><body><h1>تقرير ${data.month}</h1><div class="grid">${[
+    ['الإنفاق',data.spend],['مرات الظهور',data.impressions],['الوصول',data.reach],['النقرات',data.clicks],['CTR',data.ctr+'%'],['CPC',data.cpc],['عدد الطلبات',data.orders],['قيمة المبيعات',data.sales],['ROAS',data.roas]
+  ].map(([k,v])=>`<div class="card"><b>${k}</b><div>${v ?? '-'}</div></div>`).join('')}</div><h3>ملاحظات</h3><p>${data.notes||'-'}</p><h3>توصيات</h3><p>${data.reco||'-'}</p></body></html>`
+}
+
+async function requireAdmin(){
+  const { data:{ session } } = await supabaseClient.auth.getSession();
+  if(!session){ window.location.href = 'login.html'; return null; }
+  return session;
+}
+
+async function loadBrands(){
+  const { data } = await supabaseClient.from('brands').select('id,name').eq('is_active', true).order('created_at', {ascending:false});
+  brands = data || [];
+  const options = brands.map(b=>`<option value="${b.id}">${b.name}</option>`).join('');
+  document.getElementById('clientBrand').innerHTML = options;
+  document.getElementById('reportBrand').innerHTML = options;
+}
+
+async function loadReports(){
+  const { data } = await supabaseClient.from('client_reports').select('id,brand_name,report_month,is_active,created_at').order('created_at',{ascending:false}).limit(50);
+  const rows = (data||[]).map(r=>`<tr class="border-b"><td class="p-2">${r.brand_name||'-'}</td><td class="p-2">${r.report_month||'-'}</td><td class="p-2">${r.is_active===false?'مخفي':'ظاهر'}</td><td class="p-2"><button data-id="${r.id}" class="toggle bg-amber-500 text-white px-2 py-1 rounded">تبديل</button></td></tr>`).join('');
+  document.getElementById('reportsTable').innerHTML = `<table class="w-full text-right"><thead><tr class="bg-slate-50"><th class="p-2">البراند</th><th class="p-2">الشهر</th><th class="p-2">الحالة</th><th class="p-2">إجراء</th></tr></thead><tbody>${rows}</tbody></table>`;
+  document.querySelectorAll('.toggle').forEach(btn=>btn.addEventListener('click', async ()=>{
+    const id = btn.dataset.id;
+    const { data:one } = await supabaseClient.from('client_reports').select('is_active').eq('id',id).single();
+    await supabaseClient.from('client_reports').update({is_active: !(one?.is_active===false)}).eq('id',id);
+    loadReports();
+  }));
+}
+
+document.getElementById('brandForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  await supabaseClient.from('brands').insert({name: brandName.value, logo_url: brandLogo.value, is_active: true});
+  e.target.reset();
+  loadBrands();
+});
+
+document.getElementById('clientForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const { data:{ session } } = await supabaseClient.auth.getSession();
+  const response = await fetch('/api/admin-create-client', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${session?.access_token || ''}`
+    },
+    body: JSON.stringify({
+      email: clientEmail.value,
+      password: clientPassword.value,
+      brand_id: clientBrand.value
+    })
+  });
+  const result = await response.json();
+  if(!response.ok){
+    alert(result.error || 'فشل إنشاء حساب العميل');
+    return;
+  }
+  e.target.reset();
+  alert('تم إنشاء حساب العميل وربطه بالبراند بنجاح');
+});
+
+document.getElementById('reportForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const brand = brands.find(b=>b.id===reportBrand.value);
+  const payload = {
+    month: reportMonth.value, spend: reportSpend.value, impressions: reportImpressions.value, reach: reportReach.value, clicks: reportClicks.value,
+    ctr: reportCtr.value, cpc: reportCpc.value, orders: reportOrders.value, sales: reportSales.value, roas: reportRoas.value,
+    notes: reportNotes.value, reco: reportReco.value
+  };
+  let htmlContent = reportTemplate(payload);
+  const file = reportHtmlFile.files?.[0];
+  if(file){ htmlContent = await file.text(); }
+
+  await supabaseClient.from('client_reports').insert({
+    brand_id: reportBrand.value,
+    brand_name: brand?.name || null,
+    report_month: reportMonth.value,
+    report_html: htmlContent,
+    report_data: payload,
+    is_active: true
+  });
+  e.target.reset();
+  loadReports();
+});
+
+document.getElementById('logoutBtn').addEventListener('click', async ()=>{ await supabaseClient.auth.signOut(); location.href='login.html'; });
+
+requireAdmin().then(async (session)=>{ if(!session) return; await loadBrands(); await loadReports(); });
+</script>
+</body>
+</html>
