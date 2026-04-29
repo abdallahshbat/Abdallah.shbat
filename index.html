@@ -198,6 +198,9 @@
                 <a href="login.html" class="menu-link px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center gap-3 font-medium text-gray-300">
   <i class="ph ph-sign-in text-lg"></i> تسجيل الدخول
 </a>
+                <a href="admin-login.html" class="menu-link px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center gap-3 font-medium text-gray-300">
+  <i class="ph ph-gear text-lg"></i> لوحة الأدمن
+</a>
             </div>
         </div>
     </div>
@@ -1072,5 +1075,22 @@ async function fetchGeminiWithRetry(prompt, systemPrompt) {
 
         });
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function(){
+  const client=supabase.createClient('https://vmefjlfubcqgeclezrpo.supabase.co','sb_publishable_G6tsEoDkrQ_6wv--7kTEzQ_zvGbA7zS');
+  const {data}=await client.from('brands').select('name,logo_url').eq('is_active',true).order('created_at',{ascending:false}).limit(18);
+  if(!data||!data.length) return;
+  const wrappers=['brands-content-1','brands-content-2','brands-content-3'].map(id=>document.getElementById(id)).filter(Boolean);
+  data.forEach((b,idx)=>{
+    const card=document.createElement('div');
+    card.className='min-w-[120px] h-20 md:h-24 bg-white rounded-2xl border border-brand-purple/15 flex items-center justify-center p-3 shadow-card';
+    card.innerHTML = b.logo_url ? `<img src="${b.logo_url}" alt="${b.name}" class="max-h-full max-w-full object-contain"/>` : `<span class="text-sm font-bold text-brand-purple">${b.name}</span>`;
+    wrappers[idx % wrappers.length]?.appendChild(card);
+  });
+})();
+</script>
+
 </body>
 </html>

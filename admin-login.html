@@ -1,0 +1,27 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>دخول الأدمن</title><script src="https://cdn.tailwindcss.com"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
+<div class="bg-white rounded-2xl shadow p-6 w-full max-w-md space-y-3">
+<h1 class="text-xl font-bold">تسجيل دخول الأدمن</h1>
+<p class="text-sm text-gray-600">بيانات الأدمن الافتراضية المقترحة: <b>admin@abdallah.local</b> / <b>Admin@123456</b></p>
+<input id="email" class="w-full border rounded p-2" value="admin@abdallah.local"/>
+<input id="password" type="password" class="w-full border rounded p-2" value="Admin@123456"/>
+<input id="secret" type="password" class="w-full border rounded p-2" placeholder="ADMIN_BOOTSTRAP_SECRET (مرة واحدة للتجهيز)">
+<div class="grid grid-cols-2 gap-2">
+<button id="bootstrap" class="bg-amber-600 text-white rounded p-2">تجهيز الأدمن في Supabase</button>
+<button id="login" class="bg-purple-700 text-white rounded p-2">دخول</button>
+</div>
+<p id="msg" class="text-sm"></p>
+</div>
+<script>
+const supabaseClient = supabase.createClient('https://vmefjlfubcqgeclezrpo.supabase.co','sb_publishable_G6tsEoDkrQ_6wv--7kTEzQ_zvGbA7zS');
+bootstrap.onclick = async ()=>{
+  msg.textContent='جاري التجهيز...';
+  const r=await fetch('/api/bootstrap-admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email.value,password:password.value,secret:secret.value})});
+  const j=await r.json(); msg.textContent=r.ok?'تم تجهيز الأدمن بنجاح':'خطأ: '+(j.error||'');
+};
+login.onclick = async ()=>{
+  const {error}=await supabaseClient.auth.signInWithPassword({email:email.value,password:password.value});
+  if(error){msg.textContent='فشل الدخول: '+error.message;return;}
+  location.href='admin.html';
+};
+</script></body></html>
