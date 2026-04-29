@@ -114,9 +114,25 @@ async function loadDashboard(){
 
   document.getElementById("emailBox").innerText = session.user.email;
 
+  const { data: myBrands } = await supabaseClient
+    .from("brand_users")
+    .select("brand_id")
+    .eq("user_id", session.user.id)
+    .eq("is_active", true);
+
+  const brandIds = (myBrands || []).map((b) => b.brand_id);
+
+  if (brandIds.length === 0) {
+    document.getElementById("loading").classList.add("hidden");
+    document.getElementById("errorBox").classList.remove("hidden");
+    return;
+  }
+
   const { data, error } = await supabaseClient
     .from("client_reports")
-    .select("brand_name, report_html, report_month, report_order")
+    .select("brand_name, report_html, report_month, report_order, is_active")
+    .in("brand_id", brandIds)
+    .neq("is_active", false)
     .order("report_order", { ascending: true });
 
   document.getElementById("loading").classList.add("hidden");
