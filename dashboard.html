@@ -108,7 +108,7 @@ async function loadDashboard(){
   const { data:{session} } = await supabaseClient.auth.getSession();
 
   if(!session){
-    window.location.href = "login.html";
+    window.location.href = "index.html";
     return;
   }
 
@@ -181,7 +181,7 @@ function showReport(index){
 
 document.getElementById("logoutBtn").addEventListener("click", async () => {
   await supabaseClient.auth.signOut();
-  window.location.href = "login.html";
+  window.location.href = "index.html";
 });
 
 loadDashboard();
